@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html >
+<!--From https://codepen.io/frytyler/pen/EGdtg-->
+<head>
+  <meta charset="UTF-8">
+  <title>ML API</title>
+  <link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Arimo' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Hind:300' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
+  
+</head>
+
+<body>
+ <div class="login">
+	<h1>Players Position Classification: </h1>
+
+     <!-- Main Input For Receiving Query to our ML -->
+    <form action="{{ url_for('predict')}}"method="post">
+
+        {%for i in ['Name', 'Age', 'Height', 'Weight',
+        'Overall', 'Potential', 'Growth', 'TotalStats',
+        'BaseStats', 'BestPosition', 'Club', 'ValueEUR', 'WageEUR',
+        'ReleaseClause', 'ContractUntil', 'ClubJoined', 'OnLoad',
+        'PreferredFoot', 'IntReputation', 'WeakFoot','Nationality',
+        'SkillMoves', 'AttackingWorkRate', 'DefensiveWorkRate', 'PaceTotal',
+        'ShootingTotal', 'PassingTotal', 'DribblingTotal', 'DefendingTotal',
+        'PhysicalityTotal', 'Crossing', 'Finishing', 'HeadingAccuracy',
+        'ShortPassing', 'Volleys', 'Dribbling', 'Curve', 'FKAccuracy',
+        'LongPassing', 'BallControl', 'Acceleration', 'SprintSpeed', 'Agility',
+        'Reactions', 'Balance', 'ShotPower', 'Jumping', 'Stamina', 'Strength',
+        'LongShots', 'Aggression', 'Interceptions', 'Positioning', 'Vision',
+        'Penalties', 'Composure', 'Marking', 'StandingTackle', 'SlidingTackle',
+        'GKDiving', 'GKHandling', 'GKKicking', 'GKPositioning', 'GKReflexes']%}
+            <input type="{{i}}" name="{{i}}" placeholder="{{i}}" required="required" />
+        {%endfor%}
+        
+
+        <button type="submit" class="btn btn-primary btn-block btn-large">Predict</button>
+    </form>
+
+   <br>
+   <br>
+   {{ prediction_text }}
+
+ </div>
+
+
+</body>
+</html>
