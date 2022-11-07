@@ -3,10 +3,11 @@ from flask import Flask, request, jsonify, render_template
 import pickle
 import pandas as pd
 from sklearn.preprocessing import MinMaxScaler
+import os
 
 # Create flask app
 flask_app = Flask(__name__)
-model = pickle.load(open("Deployment\model.pkl", "rb"))
+model = pickle.load(open(os.path.join(os.path.dirname(os.path.realpath(__file__)), "model.pkl"), "rb"))
 
 @flask_app.route("/")
 def Home():
@@ -42,12 +43,11 @@ def predict():
                 float_features.append(float(mapping_index.get_loc(x)))
             else:
                 float_features.append(float(-1)) """
-            
 
     features = [np.array(float_features)]
     #features = mms.fit_transform(features)
     prediction = model.predict(features)
-    return render_template("index.html", prediction_text = "The Best Position for {} is {}".format(name, positions[prediction[0]]))
+    return render_template("result.html", prediction_text = "The Best Position for {} is {}".format(name, positions[prediction[0]]))
 
 if __name__ == "__main__":
     flask_app.run(debug=True)

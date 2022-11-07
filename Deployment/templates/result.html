@@ -1,0 +1,83 @@
+<!doctype html>
+<!--[if lt IE 7]>		<html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="zxx"> <![endif]-->
+<!--[if IE 7]>			<html class="no-js lt-ie9 lt-ie8" lang="zxx"> <![endif]-->
+<!--[if IE 8]>			<html class="no-js lt-ie9" lang="zxx"> <![endif]-->
+<!--[if gt IE 8]><!-->	<html class="no-js" lang="zxx" style="scroll-behavior: smooth;"> <!--<![endif]-->
+
+
+<head>
+	<style>
+		html {
+		  scroll-behavior: smooth !important;
+		}
+		
+	</style>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+	<title>Player Position Prediction</title>
+	<meta name="description" content=">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="apple-touch-icon" href="apple-touch-icon.png') }}">
+	<link rel="stylesheet" href="{{ url_for('static',filename='/css/bootstrap.min.css') }}">
+	<link rel="stylesheet" href="{{ url_for('static',filename='/css/normalize.css') }}">
+	<link rel="stylesheet" href="{{ url_for('static',filename='/css/font-awesome.min.css') }}">
+	<link rel="stylesheet" href="{{ url_for('static',filename='/css/transitions.css') }}">
+	<link rel="stylesheet" href="{{ url_for('static',filename='/css/prettyPhoto.css') }}">
+	<link rel="stylesheet" href="{{ url_for('static',filename='/css/swiper.min.css') }}">
+	<link rel="stylesheet" href="{{ url_for('static',filename='/css/jquery-ui.css') }}">
+	<link rel="stylesheet" href="{{ url_for('static',filename='/css/animate.css') }}">
+	<link rel="stylesheet" href="{{ url_for('static',filename='/css/owl.theme.css') }}">
+	<link rel="stylesheet" href="{{ url_for('static',filename='/css/owl.carousel.css') }}">
+	<link rel="stylesheet" href="{{ url_for('static',filename='/css/customScrollbar.css') }}">
+	<link rel="stylesheet" href="{{ url_for('static',filename='/css/icomoon.css') }}">
+	<link rel="stylesheet" href="{{ url_for('static',filename='/css/main.css') }}">
+	<link rel="stylesheet" href="{{ url_for('static',filename='/css/color.css') }}">
+	<link rel="stylesheet" href="{{ url_for('static',filename='/css/responsive.css') }}">
+	<script src="{{ url_for('static',filename='/js/vendor/modernizr-2.8.3-respond-1.4.2.min.js') }}"></script>
+</head>
+<body>
+	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+		<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+	<!--[if lt IE 8]>
+		<p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+	<![endif]-->
+	<!--************************************
+			Wrapper Start
+	*************************************-->
+	<div id="tg-wrapper" class="tg-wrapper tg-haslayout">
+		<!--************************************
+				Home Slider Start
+		*************************************-->
+		<div class="tg-sliderbox">
+			<div class="tg-imglayer">
+				<img src="{{ url_for('static',filename='/images/bg-pattran.png') }}" alt="image desctription">
+			</div>
+			<div id="tg-home-slider" class="tg-home-slider tg-haslayout">
+				<div class="swiper-wrapper">
+					<div class="tg-slider-content">
+						<h1 style="margin-left: 10%; margin-top: -10%;">{{ prediction_text }}</h1>
+					</div>
+					<div class="swiper-slide">
+						
+						<div class="container">
+							
+						</div>
+					</div>
+				</div>
+				<h1><a href = "./" style="color:white">Go to Home</a></h1> 
+			</div>
+		</div>
+		<!--************************************
+				Home Slider End
+		*************************************-->
+	</div>
+	
+</body>
+
+
+</html>

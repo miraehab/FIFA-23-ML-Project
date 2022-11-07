@@ -1,0 +1,223 @@
+<html>
+	<head>
+	<!-- Bootstrap CSS -->
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+		<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+		<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+		<title>Player Position Prediction</title>
+	</head>
+	<body>
+	<!-- Java Script -->	
+		<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+		<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+
+		
+		<!-- Navbar-->
+		<nav class="navbar navbar-dark bg-dark">
+			<span class="navbar-brand mb-0 h1">Player Position Prediction</span>
+		</nav>
+		<div>
+			<br>
+			<!--Form-->
+			<form action = "{{url_for('predict')}}" method ="POST" >
+				<fieldset>
+				<legend>Player Position Prediction Form</legend><br>
+				  <div class="card card-body" >
+					  <div class="form-group  row">
+						{%for i in ['Name', 'Age', 'Height', 'Weight',
+						'Overall', 'Potential', 'Growth', 'TotalStats',
+						'BaseStats', 'ValueEUR', 'WageEUR',
+						'ReleaseClause', 'ContractUntil', 'OnLoad',
+						'PreferredFoot', 'IntReputation', 'WeakFoot',
+						'SkillMoves', 'AttackingWorkRate', 'DefensiveWorkRate', 'PaceTotal',
+						'ShootingTotal', 'PassingTotal', 'DribblingTotal', 'DefendingTotal',
+						'PhysicalityTotal', 'Crossing', 'Finishing', 'HeadingAccuracy',
+						'ShortPassing', 'Volleys', 'Dribbling', 'Curve', 'FKAccuracy',
+						'LongPassing', 'BallControl', 'Acceleration', 'SprintSpeed', 'Agility',
+						'Reactions', 'Balance', 'ShotPower', 'Jumping', 'Stamina', 'Strength',
+						'LongShots', 'Aggression', 'Interceptions', 'Positioning', 'Vision',
+						'Penalties', 'Composure', 'Marking', 'StandingTackle', 'SlidingTackle',
+						'GKDiving', 'GKHandling', 'GKKicking', 'GKPositioning', 'GKReflexes']%}
+						<div class="col-sm-3">
+							<label for="age">{{i}}</label>
+							<input type="number" class="form-control" id="{{i}}" name="age" required>
+						</div>
+						{%endfor%}
+					  </div>
+					  <br>
+					  <div class="form-group">
+						<input class="btn btn-primary" type="submit" value="Result">
+					  </div>
+					  
+					  <!--Prediction Result-->
+					  <div id ="result">
+							<strong style="color:red">{{ prediction_text }}</strong>
+					 </div>
+				     </div>
+			 </fieldset>
+			</form>
+
+			<table id="table" style="width: 50%;">
+				<tr>
+				  <th id="toShow" style="color: white">Name</th>
+				  {%for i in ['Age', 'Height', 'Weight',
+				  'Overall', 'Potential', 'Growth', 'TotalStats',
+				  'BaseStats', 'ValueEUR', 'WageEUR',
+				  'ReleaseClause', 'ContractUntil', 'OnLoad',
+				  'PreferredFoot', 'IntReputation', 'WeakFoot',
+				  'SkillMoves', 'AttackingWorkRate', 'DefensiveWorkRate', 'PaceTotal',
+				  'ShootingTotal', 'PassingTotal', 'DribblingTotal', 'DefendingTotal',
+				  'PhysicalityTotal', 'Crossing', 'Finishing', 'HeadingAccuracy',
+				  'ShortPassing', 'Volleys', 'Dribbling', 'Curve', 'FKAccuracy',
+				  'LongPassing', 'BallControl', 'Acceleration', 'SprintSpeed', 'Agility',
+				  'Reactions', 'Balance', 'ShotPower', 'Jumping', 'Stamina', 'Strength',
+				  'LongShots', 'Aggression', 'Interceptions', 'Positioning', 'Vision',
+				  'Penalties', 'Composure', 'Marking', 'StandingTackle', 'SlidingTackle',
+				  'GKDiving', 'GKHandling', 'GKKicking', 'GKPositioning', 'GKReflexes']%}
+						  <th style="visibility: hidden;">{{i}}</th>
+					  {%endfor%}
+				  </tr>
+		  
+				  <tr>
+					<td style="color: white">L. Messi</td>
+					{%for i in [ 0.85714286, 0.03225806, 0       , 1       , 0.33333333,
+					0      , 0.88338493, 0.12280702, 0.22881356, 0.32539683,
+					0.2253194 , 0       , 0        , 0        , 1        ,
+					0.5       , 0.75      , 0.5       , 0.5       , 0.52941176,
+					0.90625   , 0.86363636, 1       , 0      , 0.1       ,
+					0.87654321, 0.95180723, 0.73076923, 0.96666667, 0.98717949,
+					1       , 1        , 1       , 0.94827586, 0.98591549,
+					0.81818182, 0.5625    , 0.96226415, 0.8       , 1       ,
+					0.81081081, 0.37209302, 0.6031746 , 0.3902439 , 1       ,
+					0.3       , 0.3625    , 0.97619048, 1     , 0.79012346,
+					1     , 0.06493506, 0.30120482, 0.20253165, 0      ,
+					0.07058824, 0.11363636, 0.10465116, 0.02380952]%}
+						  <td style="visibility: hidden;">{{i}}</td>
+					  {%endfor%}
+				  </tr>
+				  
+				  <tr>
+					<td style="color: white">R. Lewandowski</td>
+					{%for i in [0.71428571, 0.5483871 , 0.48275862, 1        , 0.33333333,
+					  0        , 0.89886481, 0.22807018, 0.39830508, 0.92063492,
+					  0.43524971, 0.5       , 0        , 1        , 1        ,
+					  0.5       , 0.75      , 0        , 1        , 0.35294118,
+					  0.96875   , 0.36363636, 0.63636364, 0.1754386 , 0.73333333,
+					  0.71604938, 1        , 1        , 0.85      , 1        ,
+					  0.87951807, 0.825     , 0.90243902, 0.60344828, 0.92957746,
+					  0.61818182, 0.54166667, 0.69811321, 0.9       , 0.78333333,
+					  0.94594595, 0.76744186, 0.6984127 , 0.85365854, 0.91139241,
+					  0.82857143, 0.475     , 0.98809524, 0.74      , 0.97530864,
+					  0.73333333, 0.25974026, 0.38554217, 0.13924051, 0.11111111,
+					  0.01176471, 0.07954545, 0.03488372, 0.04761905]%}
+						  <td style="visibility: hidden;">{{i}}</td>
+					  {%endfor%}
+				  </tr>
+				  
+				  
+				  <tr>
+					<td style="color: white">K. De Bruyne</td>
+					{%for i in [0.57142857, 0.41935484, 0.10344828, 1        , 0.33333333,
+					  0        , 1        , 0.66666667, 0.53107345, 0.73544974,
+					  0.51277584, 0.5       , 0        , 1        , 0.5       ,
+					  1        , 0.75      , 0        , 0        , 0.32352941,
+					  0.875     , 1        , 0.68181818, 0.52631579, 0.53333333,
+					  1        , 0.89156627, 0.53846154, 1        , 0.92307692,
+					  0.91566265, 0.95      , 0.87804878, 1        , 0.94366197,
+					  0.61818182, 0.5       , 0.67924528, 0.7       , 0.71666667,
+					  0.97297297, 0.25581395, 0.88888889, 0.53658537, 1        ,
+					  0.74285714, 0.6875    , 0.91666667, 1        , 0.88888889,
+					  0.76666667, 0.68831169, 0.6626506 , 0.56962025, 0.11111111,
+					  0.09411765, 0        , 0.05813953, 0.08333333]%}
+						  <td style="visibility: hidden;">{{i}}</td>
+					  {%endfor%}
+				  </tr>
+		  
+				  <tr>
+					<td style="color: white">M. Salah</td>
+					{%for i in [0.5       , 0.22580645, 0.13793103, 0.5       , 0.16666667,
+					  0        , 0.92053664, 0.45614035, 0.57627119, 0.52380952,
+					  0.55574913, 0        , 0        , 0        , 0.5       ,
+					  0        , 0.75      , 0        , 1        , 0.79411765,
+					  0.90625   , 0.5       , 0.81818182, 0.19298246, 0.46666667,
+					  0.82716049, 0.98795181, 0.58974359, 0.85      , 0.93589744,
+					  0.93975904, 0.8875    , 0.70731707, 0.72413793, 0.91549296,
+					  0.85454545, 0.875     , 0.94339623, 0.9       , 0.93333333,
+					  0.72972973, 0.39534884, 0.87301587, 0.56097561, 0.92405063,
+					  0.57142857, 0.55      , 0.96428571, 0.82      , 0.92592593,
+					  0.86666667, 0.2987013 , 0.39759036, 0.41772152, 0.09876543,
+					  0.10588235, 0.04545455, 0.06976744, 0.0952381 ]%}
+						  <td style="visibility: hidden;">{{i}}</td>
+					  {%endfor%}
+				  </tr>
+		  
+				  <tr>
+					<td style="color: white">K. Mbappé</td>
+					{%for i in [0        , 0.4516129 , 0.20689655, 1        , 1       ,
+					  1        , 0.86996904, 0.43859649, 1        , 0.41798942,
+					  1        , 0.25      , 0        , 1        , 0.5       ,
+					  0.5       , 1        , 0        , 0.5       , 1        ,
+					  0.90625   , 0.40909091, 0.90909091, 0.03508772, 0.5       ,
+					  0.80246914, 0.98795181, 0.75641026, 0.86666667, 0.92307692,
+					  0.97590361, 0.8375    , 0.70731707, 0.62068966, 0.95774648,
+					  1        , 1        , 1        , 0.9       , 0.76666667,
+					  0.86486486, 0.58139535, 0.87301587, 0.58536585, 0.88607595,
+					  0.58571429, 0.3375    , 0.96428571, 0.78      , 0.85185185,
+					  0.73333333, 0.14285714, 0.28915663, 0.30379747, 0.08641975,
+					  0        , 0.02272727, 0.06976744, 0        ]%}
+						  <td style="visibility: hidden;">{{i}}</td>
+					  {%endfor%}
+				  </tr>
+		  
+				  <tr>
+					<td style="color: white">Cristiano Ronaldo</td>
+					{%for i in [1        , 0.61290323, 0.55172414, 0.5       , 0.16666667,
+					  0        , 0.85139319, 0        , 0.15536723, 0.39153439,
+					  0.16144019, 0        , 0        , 1        , 1        ,
+					  0.5       , 1        , 0        , 0.5       , 0.52941176,
+					  1        , 0.31818182, 0.59090909, 0        , 0.46666667,
+					  0.82716049, 0.98795181, 0.98717949, 0.78333333, 0.96153846,
+					  0.87951807, 0.85      , 0.82926829, 0.68965517, 0.91549296,
+					  0.67272727, 0.70833333, 0.69811321, 1        , 0.53333333,
+					  1        , 1        , 0.6984127 , 0.6097561 , 0.98734177,
+					  0.57142857, 0.225     , 1        , 0.64      , 0.97530864,
+					  0.96666667, 0.11688312, 0.26506024, 0.20253165, 0.01234568,
+					  0.07058824, 0.11363636, 0.10465116, 0.05952381]%}
+						  <td style="visibility: hidden;">{{i}}</td>
+					  {%endfor%}
+				  </tr>
+			  </table>
+			
+		</div>
+        <script>
+            var table = document.getElementById("table"), rIndex;
+        
+            for(var i = 0; i < table.rows.length; i++){
+              table.rows[i].onclick = function(){
+                rIndex = this.rowIndex;
+                features = ['Name', 'Age', 'Height', 'Weight',
+                'Overall', 'Potential', 'Growth', 'TotalStats',
+                'BaseStats', 'ValueEUR', 'WageEUR',
+                'ReleaseClause', 'ContractUntil', 'OnLoad',
+                'PreferredFoot', 'IntReputation', 'WeakFoot',
+                'SkillMoves', 'AttackingWorkRate', 'DefensiveWorkRate', 'PaceTotal',
+                'ShootingTotal', 'PassingTotal', 'DribblingTotal', 'DefendingTotal',
+                'PhysicalityTotal', 'Crossing', 'Finishing', 'HeadingAccuracy',
+                'ShortPassing', 'Volleys', 'Dribbling', 'Curve', 'FKAccuracy',
+                'LongPassing', 'BallControl', 'Acceleration', 'SprintSpeed', 'Agility',
+                'Reactions', 'Balance', 'ShotPower', 'Jumping', 'Stamina', 'Strength',
+                'LongShots', 'Aggression', 'Interceptions', 'Positioning', 'Vision',
+                'Penalties', 'Composure', 'Marking', 'StandingTackle', 'SlidingTackle',
+                'GKDiving', 'GKHandling', 'GKKicking', 'GKPositioning', 'GKReflexes']
+                
+                for(var i = 0; i < features.length; i++){
+                  //print(features.length)
+                  document.getElementById(`${features[i]}`).value = this.cells[i].innerHTML
+                }
+              }
+            }
+         </script>
+	</body>
+</html>
