@@ -6,7 +6,7 @@ from sklearn.preprocessing import MinMaxScaler
 
 # Create flask app
 flask_app = Flask(__name__)
-model = pickle.load(open("Deployment\model4.pkl", "rb"))
+model = pickle.load(open("Deployment\model.pkl", "rb"))
 
 @flask_app.route("/")
 def Home():
@@ -15,8 +15,6 @@ def Home():
 @flask_app.route("/predict", methods = ["POST"])
 def predict():
     positions = ['CF', 'CM', 'RW', 'GK', 'CB', 'LW', 'LM', 'LB','RM', 'RB']
-    """preferred_foot = ['Left', 'Right']
-    AttackingWorkRate = ['High', 'Low', 'Medium'] """
     float_features = []
 
     #mms = MinMaxScaler()
