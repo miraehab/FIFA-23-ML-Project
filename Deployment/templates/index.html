@@ -12,9 +12,9 @@
   
 </head>
 
-<body>
+<body style="background-image: url('https://images.unsplash.com/photo-1508098682722-e99c43a406b2?ixlib=rb-4.0.3&w=1080&fit=max&q=80&fm=jpg&crop=entropy&cs=tinysrgb');">
  <div class="login">
-	<h1>Players Position Classification: </h1>
+	<h1 style="color: white">Players Position Classification: </h1>
 
      <!-- Main Input For Receiving Query to our ML -->
     <form action="{{ url_for('predict')}}"method="post">
@@ -39,9 +39,9 @@
 
         <button type="submit" class="btn btn-primary btn-block btn-large">Predict</button>
     </form>
-    <table id="table">
+    <table id="table" style="width: 50%;">
       <tr>
-        <th id="toShow">Name</th>
+        <th id="toShow" style="color: white">Name</th>
         {%for i in ['Age', 'Height', 'Weight',
         'Overall', 'Potential', 'Growth', 'TotalStats',
         'BaseStats', 'ValueEUR', 'WageEUR',
@@ -61,7 +61,7 @@
         </tr>
 
         <tr>
-          <td>L. Messi</td>
+          <td style="color: white">L. Messi</td>
           {%for i in [ 0.85714286, 0.03225806, 0       , 1       , 0.33333333,
           0      , 0.88338493, 0.12280702, 0.22881356, 0.32539683,
           0.2253194 , 0       , 0        , 0        , 1        ,
@@ -79,7 +79,7 @@
         </tr>
         
         <tr>
-          <td>R. Lewandowski</td>
+          <td style="color: white">R. Lewandowski</td>
           {%for i in [0.71428571, 0.5483871 , 0.48275862, 1        , 0.33333333,
             0        , 0.89886481, 0.22807018, 0.39830508, 0.92063492,
             0.43524971, 0.5       , 0        , 1        , 1        ,
@@ -98,7 +98,7 @@
         
         
         <tr>
-          <td>K. De Bruyne</td>
+          <td style="color: white">K. De Bruyne</td>
           {%for i in [0.57142857, 0.41935484, 0.10344828, 1        , 0.33333333,
             0        , 1        , 0.66666667, 0.53107345, 0.73544974,
             0.51277584, 0.5       , 0        , 1        , 0.5       ,
@@ -116,7 +116,7 @@
         </tr>
 
         <tr>
-          <td>M. Salah</td>
+          <td style="color: white">M. Salah</td>
           {%for i in [0.5       , 0.22580645, 0.13793103, 0.5       , 0.16666667,
             0        , 0.92053664, 0.45614035, 0.57627119, 0.52380952,
             0.55574913, 0        , 0        , 0        , 0.5       ,
@@ -134,7 +134,7 @@
         </tr>
 
         <tr>
-          <td>K. Mbappé</td>
+          <td style="color: white">K. Mbappé</td>
           {%for i in [0        , 0.4516129 , 0.20689655, 1        , 1       ,
             1        , 0.86996904, 0.43859649, 1        , 0.41798942,
             1        , 0.25      , 0        , 1        , 0.5       ,
@@ -150,11 +150,31 @@
                 <td style="visibility: hidden;">{{i}}</td>
             {%endfor%}
         </tr>
+
+        <tr>
+          <td style="color: white">Cristiano Ronaldo</td>
+          {%for i in [1        , 0.61290323, 0.55172414, 0.5       , 0.16666667,
+            0        , 0.85139319, 0        , 0.15536723, 0.39153439,
+            0.16144019, 0        , 0        , 1        , 1        ,
+            0.5       , 1        , 0        , 0.5       , 0.52941176,
+            1        , 0.31818182, 0.59090909, 0        , 0.46666667,
+            0.82716049, 0.98795181, 0.98717949, 0.78333333, 0.96153846,
+            0.87951807, 0.85      , 0.82926829, 0.68965517, 0.91549296,
+            0.67272727, 0.70833333, 0.69811321, 1        , 0.53333333,
+            1        , 1        , 0.6984127 , 0.6097561 , 0.98734177,
+            0.57142857, 0.225     , 1        , 0.64      , 0.97530864,
+            0.96666667, 0.11688312, 0.26506024, 0.20253165, 0.01234568,
+            0.07058824, 0.11363636, 0.10465116, 0.05952381]%}
+                <td style="visibility: hidden;">{{i}}</td>
+            {%endfor%}
+        </tr>
     </table>
 
    <br>
    <br>
+   <h1 style="color: white">
    {{ prediction_text }}
+   </h1>
 
  </div>
 

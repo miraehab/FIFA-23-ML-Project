@@ -22,10 +22,12 @@ def predict():
     #mms = MinMaxScaler()
 
     i = 0
+    name = ""
 
     for x in request.form.values():
         if i == 0: 
             i += 1
+            name = x
             continue
         float_features.append(float(x))
         """ if i == 0: 
@@ -47,7 +49,7 @@ def predict():
     features = [np.array(float_features)]
     #features = mms.fit_transform(features)
     prediction = model.predict(features)
-    return render_template("index.html", prediction_text = "The Best Position for this Player is {}".format(positions[prediction[0]]))
+    return render_template("index.html", prediction_text = "The Best Position for {} is {}".format(name, positions[prediction[0]]))
 
 if __name__ == "__main__":
     flask_app.run(debug=True)
